@@ -5,24 +5,20 @@ package DIO_soft;
  */
 public class Person {
 
-    private String firstName;
-    private String secondName;
-    private String email;
-    private Integer age;
-    private Enum<Position> position;
+    //local code review (vtegza): make fields final @ 12.10.14
+    private final String firstName;
+    private final String secondName;
+    private final String email;
+    private final Integer age;
+    private final Enum<Position> position;
 
-    public Person() {
+    public Person(String firstName, String secondName, String email, Integer age, Enum<Position> position) {
 
-    }
-
-    public Person(String firstName, String secondName, String email, Integer age, Enum position) {
-
-        setAge(age);
-        setEmail(email);
-        setFirstName(firstName);
-        setSecondName(secondName);
-        setPosition(position);
-
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+        this.age = age;
+        this.position = position;
     }
 
     @Override
@@ -51,44 +47,36 @@ public class Person {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", position=" + position +
+                '}';
+    }
+//local code review (vtegza): generate toString @ 12.10.14
+
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getSecondName() {
         return secondName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public Enum getPosition() {
         return position;
-    }
-
-    public void setPosition(Enum position) {
-        this.position = position;
     }
 
 

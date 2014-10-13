@@ -5,5 +5,7 @@ package DIO_soft;
  */
 public enum Position {
 
-    DIRECTOR, DEVELOPER, ANALYST,
+    DIRECTOR,
+    DEVELOPER,
+    ANALYST,
 }
