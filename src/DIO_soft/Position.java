@@ -7,5 +7,5 @@ public enum Position {
 
     DIRECTOR,
     DEVELOPER,
-    ANALYST,
+    ANALYST
 }
