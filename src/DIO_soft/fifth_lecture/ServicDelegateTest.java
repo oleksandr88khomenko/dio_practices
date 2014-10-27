@@ -5,7 +5,20 @@ import DIO_soft.Position;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ServicDelegateTest {
+
+    private void assertSameObjects(List<Person> result, List<Person> expected) {
+        Assert.assertEquals(result.size(), expected.size());
+        for (Person elem : result)
+            if (expected.contains(elem)) {
+                Assert.assertEquals(elem, expected.get(expected.indexOf(elem)));
+            } else {
+                Assert.fail();
+            }
+    }
 
     @Test
     public void testMerge() throws Exception {
@@ -19,10 +32,11 @@ public class ServicDelegateTest {
         Person vasya = new Person.Builder().firstName("Vasya").secondName("Larionov").position(Position.DEVELOPER).age(new Integer(20)).email("email@.gmail.com").build();
         Person valya = new Person.Builder().firstName("Valya").secondName("Lari").position(Position.DEVELOPER).age(new Integer(19)).email("lari_email@.gmail.com").build();
 
-        Person[] firstArr = {sasha, sasha1, vanya};
-        Person[] secondArr = {sergii, sasha, vanya};
-        Person[] expected = {vanya, sasha1, sasha, sergii};
-        Person[] result = servicDelegate.merge(firstArr, secondArr);
-        Assert.assertArrayEquals(expected, result);
+        List<Person> firstArr = Arrays.asList(sasha, sasha1, vanya);
+        List<Person> secondArr = Arrays.asList(sergii, sasha, vanya);
+        List<Person> expected = Arrays.asList(sergii, sasha, vanya, sasha1);
+        List<Person> result = servicDelegate.merge(firstArr, secondArr);
+        assertSameObjects(result, expected);
+
     }
 }
